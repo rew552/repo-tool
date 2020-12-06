@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no user-scalable=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <title>勤怠入力報告ツール</title>
+</head>
+<style>
+    * {
+        color: #778899;
+    };
+    button {
+        cursor: pointer;
+    };
+</style>
+
+<body style="width: 100vw; max-width: 700px; margin: 0 auto; background-color: #f8f8ff;">
+    <header class="container">
+        <div class="row">
+            <nav id="navbar" class="col navbar navbar-expand-lg navbar-light"
+                style="padding: 15px; font-weight: bold; font-size: 1.6rem; border-bottom: 5px solid #778899;">勤怠入力報告ツール
+            </nav>
+        </div>
+        <div class="row">
+            <input class="col form-control form-control-sm" style="max-width: 200px; min-width:150px; margin: 15px;" id="name" placeholder="名前">
+            <div class="col" style="min-width: 0px;"></div>
+            <button id="kinnosuke" class="col-3 btn btn-danger" role="button" style="min-width: 90px; margin: 8px; font-size: 1.2rem; font-weight: bold; color: #000000; -webkit-text-stroke: 1px #FFF;">勤之助</button>
+        </div>
+    </header>
+    <main style="margin: 8px;">
+        <form id="inputform">
+            <div class="container" style="padding: 0">
+                <label for="jizenbox-origin" style="font-weight: bold;">事前</label>
+                <div id="jizenbox-origin" class="container"
+                    style="padding: 1rem; padding-bottom: 1rem; border-bottom: 2px dashed #778899;">
+                    <div id="jizenrow" class="form-group row">
+                        <select id=jizenmonth class="form-control form-control-sm col">
+                            <option value="" style="display: none">月</option>
+                            <option value="1月">1月</option>
+                            <option value="2月">2月</option>
+                            <option value="3月">3月</option>
+                            <option value="4月">4月</option>
+                            <option value="5月">5月</option>
+                            <option value="6月">6月</option>
+                            <option value="7月">7月</option>
+                            <option value="8月">8月</option>
+                            <option value="9月">9月</option>
+                            <option value="10月">10月</option>
+                            <option value="11月">11月</option>
+                            <option value="12月">12月</option>
+                        </select>
+                        <select id="jizenday" class="form-control form-control-sm col">
+                            <option value="" style="display: none">日</option>
+                            <option value="1日">1日</option>
+                            <option value="2日">2日</option>
+                            <option value="3日">3日</option>
+                            <option value="4日">4日</option>
+                            <option value="5日">5日</option>
+                            <option value="6日">6日</option>
+                            <option value="7日">7日</option>
+                            <option value="8日">8日</option>
+                            <option value="9日">9日</option>
+                            <option value="10日">10日</option>
+                            <option value="11日">11日</option>
+                            <option value="12日">12日</option>
+                            <option value="13日">13日</option>
+                            <option value="14日">14日</option>
+                            <option value="15日">15日</option>
+                            <option value="16日">16日</option>
+                            <option value="17日">17日</option>
+                            <option value="18日">18日</option>
+                            <option value="19日">19日</option>
+                            <option value="20日">20日</option>
+                            <option value="21日">21日</option>
+                            <option value="22日">22日</option>
+                            <option value="23日">23日</option>
+                            <option value="24日">24日</option>
+                            <option value="25日">25日</option>
+                            <option value="26日">26日</option>
+                            <option value="27日">27日</option>
+                            <option value="28日">28日</option>
+                            <option value="29日">29日</option>
+                            <option value="30日">30日</option>
+                            <option value="31日">31日</option>
+                        </select>
+                        <select id="jizenshinsei" class="form-control form-control-sm col-6">
+                            <option value="" style="display: none">申請内容を選択</option>
+                            <option value="残業申請">残業申請</option>
+                            <option value="早出申請">早出申請</option>
+                            <option value="電車遅延申請">電車遅延申請</option>
+                            <option value="有給申請">有給申請</option>
+                            <option value="休出申請">休出申請</option>
+                            <option value="代休申請">代休申請</option>
+                            <option value="振出/振休申請">振出/振休申請</option>
+                            <option value="欠勤申請">欠勤申請</option>
+                            <option value="特休申請">特休申請</option>
+                            <option value="子の看護休暇申請">子の看護休暇申請</option>
+                            <option value="介護休暇申請">介護休暇申請</option>
+                            <option value="休憩時間修正申請">休憩時間修正申請</option>
+                            <option value="遅刻・早退申請">遅刻・早退申請</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <input value="" class="form-control form-control-sm" id="jizenbikou" placeholder="備考を記入">
+                    </div>
+                </div>
+                <div id="jizenbox">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <button id="jizenadd" role="button" class="btn btn-primary col-3 offset-2" style="margin-top: 1rem;"
+                            >追加</button>
+                        <button id="jizendel" role="button" class="btn btn-primary col-3 offset-2" style="margin-top: 1rem;"
+                            >削除</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="margin-top: 2rem; padding: 0;">
+                <label for="jigobox-origin" style="font-weight: bold;">事後</label>
+                <div id="jigobox-origin" class="container" style="padding: 1rem; border-bottom: 2px dashed #778899;">
+                    <div class="form-group row">
+                        <select id="jigomonth" class="form-control form-control-sm col">
+                            <option value="" style="display: none">月</option>
+                            <option value="1月">1月</option>
+                            <option value="2月">2月</option>
+                            <option value="3月">3月</option>
+                            <option value="4月">4月</option>
+                            <option value="5月">5月</option>
+                            <option value="6月">6月</option>
+                            <option value="7月">7月</option>
+                            <option value="8月">8月</option>
+                            <option value="9月">9月</option>
+                            <option value="10月">10月</option>
+                            <option value="11月">11月</option>
+                            <option value="12月">12月</option>
+                        </select>
+                        <select id="jigoday" class="form-control form-control-sm col">
+                            <option value="" style="display: none">日</option>
+                            <option value="1日">1日</option>
+                            <option value="2日">2日</option>
+                            <option value="3日">3日</option>
+                            <option value="4日">4日</option>
+                            <option value="5日">5日</option>
+                            <option value="6日">6日</option>
+                            <option value="7日">7日</option>
+                            <option value="8日">8日</option>
+                            <option value="9日">9日</option>
+                            <option value="10日">10日</option>
+                            <option value="11日">11日</option>
+                            <option value="12日">12日</option>
+                            <option value="13日">13日</option>
+                            <option value="14日">14日</option>
+                            <option value="15日">15日</option>
+                            <option value="16日">16日</option>
+                            <option value="17日">17日</option>
+                            <option value="18日">18日</option>
+                            <option value="19日">19日</option>
+                            <option value="20日">20日</option>
+                            <option value="21日">21日</option>
+                            <option value="22日">22日</option>
+                            <option value="23日">23日</option>
+                            <option value="24日">24日</option>
+                            <option value="25日">25日</option>
+                            <option value="26日">26日</option>
+                            <option value="27日">27日</option>
+                            <option value="28日">28日</option>
+                            <option value="29日">29日</option>
+                            <option value="30日">30日</option>
+                            <option value="31日">31日</option>
+                        </select>
+                        <select id="jigoshinsei" class="form-control form-control-sm col-6">
+                            <option value="" style="display: none">申請内容を選択</option>
+                            <option value="残業申請">残業申請</option>
+                            <option value="早出申請">早出申請</option>
+                            <option value="電車遅延申請">電車遅延申請</option>
+                            <option value="有給申請">有給申請</option>
+                            <option value="休出申請">休出申請</option>
+                            <option value="代休申請">代休申請</option>
+                            <option value="振出/振休申請">振出/振休申請</option>
+                            <option value="欠勤申請">欠勤申請</option>
+                            <option value="特休申請">特休申請</option>
+                            <option value="子の看護休暇申請">子の看護休暇申請</option>
+                            <option value="介護休暇申請">介護休暇申請</option>
+                            <option value="休憩時間修正申請">休憩時間修正申請</option>
+                            <option value="遅刻・早退申請">遅刻・早退申請</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <input type="text" class="form-control form-control-sm" id="jigobikou" placeholder="備考を記入">
+                    </div>
+                </div>
+                <div id="jigobox">
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <button type="button" id="jigoadd" role="button" class="btn btn-primary col-3 offset-2" style="margin-top: 1rem;"
+                            >追加</button>
+                        <button type="button" id="jigodel" role="button" class="btn btn-primary col-3 offset-2" style="margin-top: 1rem;"
+                            >削除</button>
+                    </div>
+                </div>
+        </form>
+        <div class="container" style="margin-top: 2rem; border: 2px dashed #778899;" >
+            <p>以下の事項に漏れはありませんか？</p>
+            <p>・各種申請</p>
+            <p>・出勤簿の入力</p>
+            <p>・本人承認(月末のみ)</p>
+        </div>
+        <button type="button" class="btn btn-primary col-6 offset-3" role="button" style="cursor: pointer; margin-top: 2rem;"
+            id="sendmail">メール作成</button>
+    </main>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+        var x = 1;
+        var y = 1;
+        //勤之助リンク
+        $('#kinnosuke').on("click", (function() {
+            window.open('https://www.e4628.jp/', '_blank');
+        }));
+
+        //事前フォーム追加
+        $('#jizenadd').on("click", (function() {
+            x += 1;
+            var element = document.getElementById('jizenbox-origin');
+            var cloneElement = element.cloneNode(true);
+            cloneElement.id = 'jizenbox' + x;
+            document.getElementById('jizenbox').appendChild(cloneElement);
+            var jizenboxx = 'jizenbox' + x;
+            $('#' + jizenboxx).find("#jizenbikou").val('');
+            $('#' + jizenboxx).find("#jizenmonth").attr('id', 'jizenmonth' + x);
+            $('#' + jizenboxx).find("#jizenday").attr('id', 'jizenday' + x);
+            $('#' + jizenboxx).find("#jizenshinsei").attr('id', 'jizenshinsei' + x);
+            $('#' + jizenboxx).find("#jizenbikou").attr('id', 'jizenbikou' + x);
+        }));
+
+        //事前フォーム削除
+        $('#jizendel').on("click", (function() {
+            var element = document.getElementById('jizenbox' + x);
+            element.parentNode.removeChild(element);
+            x -= 1;
+        }));
+
+        //事後フォーム追加
+        $('#jigoadd').on("click", (function() {
+            y += 1;
+            var element = document.getElementById('jigobox-origin');
+            var cloneElement = element.cloneNode(true);
+            cloneElement.id = 'jigobox' + y;
+            document.getElementById('jigobox').appendChild(cloneElement);
+            var jigoboxy = 'jigobox' + y;
+            $('#' + jigoboxy).find("#jigobikou").val('');
+            $('#' + jigoboxy).find("#jigomonth").attr('id', 'jigomonth' + y);
+            $('#' + jigoboxy).find("#jigoday").attr('id', 'jigoday' + y);
+            $('#' + jigoboxy).find("#jigoshinsei").attr('id', 'jigoshinsei' + y);
+            $('#' + jigoboxy).find("#jigobikou").attr('id', 'jigobikou' + y);
+        }));
+
+        //事後フォーム削除
+        $('#jigodel').on("click", (function() {
+            var element = document.getElementById('jigobox' + y);
+            element.parentNode.removeChild(element);
+            y -= 1;
+        }));
+
+        //メール本文作成
+        $('#sendmail').on("click", (function() {
+            //日付と名前
+            var today = new Date();
+            var year = today.getFullYear()
+            var month = today.getMonth() + 1
+            var date = today.getDate();
+            var formated = "" + year + ('0' + month).slice(-2) + ('0' + date).slice(-2);
+            var name = document.getElementById('name').value;
+            //事前申請フォームを本文に
+            subject = "【勤怠入力完了】" + name + "_" + formated;
+            var jizenmonthv = document.getElementById('jizenmonth').value;
+            var jizendayv = document.getElementById('jizenday').value;
+            var jizenshinseiv = document.getElementById('jizenshinsei').value;
+            var jizenbikouv = document.getElementById('jizenbikou').value;
+            var jizengrp = "　　" + jizenmonthv + jizendayv + '　' + jizenshinseiv + '　' + jizenbikouv;
+            if (x == 1) {} else {
+                var v = 1
+                var xx = x
+                do {
+                    v += 1;
+                    var jizenmonthv = document.getElementById('jizenmonth' + v).value;
+                    var jizendayv = document.getElementById('jizenday' + v).value;
+                    var jizenshinseiv = document.getElementById('jizenshinsei' + v).value;
+                    var jizenbikouv = document.getElementById('jizenbikou' + v).value;
+                    var jizengrp = jizengrp + '%0D%0A' + "　　" + jizenmonthv + jizendayv + '　' + jizenshinseiv +
+                        '　' + jizenbikouv;
+                    xx -= 1;
+                } while (xx >= 2);
+            }
+            //事後申請フォームを本文に
+            var jigomonthw = document.getElementById('jigomonth').value;
+            var jigodayw = document.getElementById('jigoday').value;
+            var jigoshinseiw = document.getElementById('jigoshinsei').value;
+            var jigobikouw = document.getElementById('jigobikou').value;
+            var jigogrp = "　　" + jigomonthw + jigodayw + '　' + jigoshinseiw + '　' + jigobikouw;
+            if (y == 1) {} else {
+                var w = 1
+                var yy = y
+                do {
+                    w += 1;
+                    var jigomonthw = document.getElementById('jigomonth' + w).value;
+                    var jigpdayw = document.getElementById('jigoday' + w).value;
+                    var jigoshinseiw = document.getElementById('jigoshinsei' + w).value;
+                    var jigobikouw = document.getElementById('jigobikou' + w).value;
+                    var jigogrp = jigogrp + '%0D%0A' + "　　" + jigomonthw + jigodayw + '　' + jigoshinseiw + '　' +
+                        jigobikouw;
+                    yy -= 1;
+                } while (yy >= 2);
+            }
+            //結合
+            body = '■各種申請が必要な勤怠変更の有無' + '%0D%0A' + '%0D%0A' + '　☆事前' + '%0D%0A' + jizengrp + '%0D%0A' + '%0D%0A' +
+                '　★事後' + '%0D%0A' + jigogrp + '%0D%0A' + "以上";
+            location.href = 'mailto:w-ict1@kcctlab.jp' + '?subject=' + subject + '&body=' + body;
+        }));
+    </script>
+</body>
+
+</html>
